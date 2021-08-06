@@ -5,10 +5,15 @@
  */
 package com.jobep.flooringmaster.view;
 
-/**
- *
- * @author powel
- */
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+@Component
 public class FMView {
+    private UserIO io;
+    
+    @Autowired
+    public FMView(UserIO io){
+        this.io = io;
+    }
     
 }

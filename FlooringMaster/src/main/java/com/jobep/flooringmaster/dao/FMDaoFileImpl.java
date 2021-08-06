@@ -5,10 +5,13 @@
  */
 package com.jobep.flooringmaster.dao;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author powel
  */
-public class FMDaoFileImpl {
+@Component
+public class FMDaoFileImpl implements FMDao{
     
 }

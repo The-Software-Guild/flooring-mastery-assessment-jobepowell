@@ -5,12 +5,14 @@
  */
 package com.jobep.flooringmaster.view;
 
+import java.util.Scanner;
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author powel
  */
-import java.util.Scanner;
-
+@Component
 public class UserIOConsoleImpl implements UserIO {
 
     final private Scanner console = new Scanner(System.in);

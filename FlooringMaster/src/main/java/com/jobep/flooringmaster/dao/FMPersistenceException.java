@@ -9,6 +9,12 @@ package com.jobep.flooringmaster.dao;
  *
  * @author powel
  */
-public interface FMDao {
+public class FMPersistenceException extends Exception {
+    public FMPersistenceException(String message){
+        super(message);
+    }
     
+    public FMPersistenceException(String message, Throwable cause){
+        super(message, cause);
+    }
 }

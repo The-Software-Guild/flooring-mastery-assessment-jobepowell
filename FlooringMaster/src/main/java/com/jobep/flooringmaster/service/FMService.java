@@ -9,6 +9,6 @@ package com.jobep.flooringmaster.service;
  *
  * @author powel
  */
-public class FMService {
+public interface FMService {
     
 }

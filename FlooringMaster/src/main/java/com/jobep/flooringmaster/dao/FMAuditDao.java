@@ -9,6 +9,6 @@ package com.jobep.flooringmaster.dao;
  *
  * @author powel
  */
-public interface FMDao {
-    
+public interface FMAuditDao {
+    public void writeAuditEntry(String entry) throws FMPersistenceException;
 }
