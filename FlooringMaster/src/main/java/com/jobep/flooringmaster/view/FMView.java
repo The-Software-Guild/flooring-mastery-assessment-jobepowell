@@ -63,12 +63,14 @@ public class FMView {
     }
     
     public void displayOrdersList(List<Order> orders){
+        displayBanner("LISTING ALL ORDERS FROM " + orders.get(0).getDate());
         for(Order currOrder : orders){
             displayOrder(currOrder);
         }
     }
     
     public Order displayAddOrder(List<Order> orders,List<Tax> taxes, List<Product> products){
+        displayBanner("ADDING ORDER");
         Order newOrder;
         Tax orderTax = taxes.get(0);
         Product orderProduct;
@@ -147,6 +149,7 @@ public class FMView {
     }
     
     public Order displayEditMenu(Order toEdit,List<Product> products,List<Tax> taxes){
+        displayBanner("EDITING MENU");
         Order editedOrder;
         Product newProduct ;
         Tax newTax = taxes.get(0);
@@ -224,8 +227,25 @@ public class FMView {
     }
     
     public int displayRemoveOrder(Order toRemove){
+        displayBanner("REMOVE MENU");
         displayOrder(toRemove);
         return io.readInt("Are you sure you would like to delete this order?\n1.Yes\n2.No");     
     }
     
+    public void displayRemovedSuccessfully(){
+        displayBanner("ORDER SUCCESSFULLY REMOVED");
+    }
+
+    public void displayEditedSuccesfully(){
+        displayBanner("ORDER SUCCESSFULLY EDITED");
+    }
+    public void displayAddedSuccessfully(){
+        displayBanner("ORDER ADDED SUCCESFULLY");
+    }
+    
+    public void displayBanner(String message){
+        printBorder();
+        io.print(message);
+        printBorder();
+    }
 }

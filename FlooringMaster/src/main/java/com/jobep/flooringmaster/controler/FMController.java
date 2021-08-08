@@ -77,8 +77,10 @@ public class FMController {
     public void addOrder(){
         Order toAdd = view.displayAddOrder(service.getAllOrders(),service.getAllTaxes(),service.getAllProducts());
         boolean toContinue = view.displayConfirmOrder(toAdd);
-        if(toContinue)
+        if(toContinue){
             service.insertOrder(toAdd);
+            view.displayAddedSuccessfully();
+        }
     }
     
     public void editOrder() throws FMNoOrderForDateException{
@@ -93,6 +95,7 @@ public class FMController {
         Order editedOrder = view.displayEditMenu(toEdit,service.getAllProducts(),service.getAllTaxes());
         if(view.displayConfirmOrder(editedOrder)){
             service.editOrder(editedOrder);
+            view.displayEditedSuccesfully();
         }
     }
     
@@ -109,6 +112,7 @@ public class FMController {
         answer = view.displayRemoveOrder(toRemove);
         if(answer == 1){
             service.removeOrder(toRemove);
+            view.displayRemovedSuccessfully();
         }
     } 
 }
