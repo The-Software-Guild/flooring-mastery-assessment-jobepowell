@@ -1,5 +1,6 @@
 
 import com.jobep.flooringmaster.controler.FMController;
+import com.jobep.flooringmaster.dao.FMPersistenceException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /*
@@ -18,6 +19,10 @@ public class App {
         appContext.scan("com.jobep.flooringmaster");
         appContext.refresh();
         FMController controller = appContext.getBean("FMController",FMController.class);
-        controller.run();
+        try{
+            controller.run();
+        }catch(FMPersistenceException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
