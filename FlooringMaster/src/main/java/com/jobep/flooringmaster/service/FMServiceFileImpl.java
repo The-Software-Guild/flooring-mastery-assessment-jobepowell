@@ -37,8 +37,13 @@ public class FMServiceFileImpl implements FMService{
      * Adds an order to the in-memory map
      */
     @Override
-    public void insertOrder(Order toInsert) {
+    public void insertOrder(Order toInsert) throws FMPersistenceException{
         dao.addOrder(toInsert.getOrderNumber(), toInsert);
+        try{
+            audit.writeAuditEntry("ORDER SUCCESSFULLY ADDED.");
+        } catch(FMPersistenceException e){
+            throw e;
+        }
     }
     
     /**
@@ -58,19 +63,29 @@ public class FMServiceFileImpl implements FMService{
      * Removes an entry from the map and replaces it with a new one
      */
     @Override
-    public void editOrder(Order order) throws FMNoOrderForDateException{
+    public void editOrder(Order order) throws FMNoOrderForDateException,FMPersistenceException{
         Order oldOrder = getOrder(order.getOrderNumber(),order.getDate());
         if(oldOrder == null)
             throw new FMNoOrderForDateException("ERROR: COULD NOT FIND ORDER FOR THAT DATE WHILE EDITING");
         removeOrder(oldOrder);
-        insertOrder(order);
+        try{
+            insertOrder(order);
+            audit.writeAuditEntry("ORDER SUCCESFFULLY EDiTED (REMOVED ORIGINAL AND ADDED NEW DATA");
+        } catch(FMPersistenceException e){
+            throw e;
+        }
     }
     /**
      * removes an order from the map
      */
     @Override
-    public void removeOrder(Order order) {
-        dao.removeOrder(order.getOrderNumber());
+    public void removeOrder(Order order) throws FMPersistenceException{
+        try{
+            dao.removeOrder(order.getOrderNumber());
+            audit.writeAuditEntry("ORDER SUCCESSFULLY REMOVED");
+        } catch(FMPersistenceException e){
+            throw e;
+        }
     }
     
     @Override

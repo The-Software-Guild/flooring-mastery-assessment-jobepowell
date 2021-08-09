@@ -74,7 +74,7 @@ public class FMController {
         view.displayOrdersList(orders);
     }
     
-    public void addOrder(){
+    public void addOrder() throws FMPersistenceException{
         Order toAdd = view.displayAddOrder(service.getAllOrders(),service.getAllTaxes(),service.getAllProducts());
         boolean toContinue = view.displayConfirmOrder(toAdd);
         if(toContinue){
@@ -83,7 +83,7 @@ public class FMController {
         }
     }
     
-    public void editOrder() throws FMNoOrderForDateException{
+    public void editOrder() throws FMNoOrderForDateException,FMPersistenceException{
         Order toEdit;
         LocalDate orderDate = view.displayGetDate();
         int orderNumber = view.displayGetOrderNumber();
@@ -99,7 +99,7 @@ public class FMController {
         }
     }
     
-    public void removeOrder() throws FMNoOrderForDateException{
+    public void removeOrder() throws FMNoOrderForDateException,FMPersistenceException{
         int answer;
         Order toRemove;
         LocalDate orderDate = view.displayGetDate();

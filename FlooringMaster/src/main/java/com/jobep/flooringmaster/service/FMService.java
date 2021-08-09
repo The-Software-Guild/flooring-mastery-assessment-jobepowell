@@ -18,9 +18,9 @@ import java.util.List;
  * @author powel
  */
 public interface FMService {
-    public void insertOrder(Order toInsert);
-    public void editOrder(Order order) throws FMNoOrderForDateException;
-    public void removeOrder(Order order);
+    public void insertOrder(Order toInsert) throws FMPersistenceException;
+    public void editOrder(Order order) throws FMNoOrderForDateException,FMPersistenceException;
+    public void removeOrder(Order order) throws FMPersistenceException;
     public Order getOrder(int orderNumber, LocalDate date) throws FMNoOrderForDateException;
     public List<Order> getOrdersByDate(LocalDate date) throws FMNoOrderForDateException;
     public void readFiles() throws FMPersistenceException;

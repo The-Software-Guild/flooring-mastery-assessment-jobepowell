@@ -92,7 +92,11 @@ public class FMDaoFileImpl implements FMDao {
         return orderFromFile;
 
     }
-
+    
+    public void clearOrders(){
+        orders.clear();
+    }
+    
     @Override
     public Product unmarshallProduct(String line) {
         String[] productTokens = line.split(DELIMITER);
@@ -103,7 +107,7 @@ public class FMDaoFileImpl implements FMDao {
         return productFromFile;
 
     }
-
+    
     @Override
     public Tax unmarshallTax(String line) {
         String[] taxTokens = line.split(DELIMITER);
